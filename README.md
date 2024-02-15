@@ -1,14 +1,6 @@
 
 
 
-Copie os arquivos docker-compose.yml, Dockerfile e o diretório docker/ para o seu projeto
-```sh
-cp -rf setup-docker-laravel/* app-laravel/
-```
-```sh
-cd app-laravel/
-```
-
 
 Crie o Arquivo .env
 ```sh
