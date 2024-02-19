@@ -15,9 +15,7 @@ class RegisterController extends Controller
     }
     public function createUser(Request $request)
     {
-
         $request->validate([
-
             'nome' => 'required',
             'email' => 'required|email|unique:users',
             'username' => 'required',
@@ -25,14 +23,15 @@ class RegisterController extends Controller
             'senha' => 'required|min:8',
 
         ]);
-        User::create([
-            'nome' => $request->nome,
-            'email' => $request->email,
-            'username' => $request->username,
-            'departamento' => $request->departamento,
-            'sobre_mim' => '',
-            'senha' => bcrypt($request->senha),
-        ]);    
+
+        $user = User::create([
+            'nome'=> $request->nome,
+            'email'=> $request->email,
+            'username'=> $request->username,
+            'departamento'=> $request->departamento,
+            'sobre_mim'=> '',
+            'senha'=> bcrypt($request->senha),
+        ]);
         return redirect('/login');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -16,13 +17,23 @@ class AuthController extends Controller
 
     public function auth(Request $request)
     {
-        $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'senha' => ['required'],
+        ]);
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (!$user || !Hash::check($credentials['senha'], $user->senha)) {
+            return redirect()->back()->withErrors('error', 'Credenciais inválidas');
         }
-        
-        return redirect()->route('auth.login')->with('error', 'Credenciais inválidas');
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('dashboard.home'));
     }
 
     public function logout()

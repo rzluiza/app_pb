@@ -26,7 +26,7 @@ class User extends Authenticatable
         'is_criador',
         'is_gestor',
         'departamento',
-        'senha'
+        'senha',
     ];
 
     /**

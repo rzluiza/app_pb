@@ -15,8 +15,6 @@ Route::get('/cadastro', [RegisterController::class, 'create'])->name('auth.forms
 //rota de não permissão
 Route::get('/nao-permitido', [AuthController::class, 'restrito'])->name('restrito');
 
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'dashboard'])->name('dashboard.home');
 });
