@@ -22,5 +22,9 @@
 </head>
 
 <body>
+    <div class="container m-4 ">
+        @yield('content')
+    </div>
 </body>
+
 </html>

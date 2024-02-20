@@ -33,7 +33,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard.home'));
+        return redirect()->intended(route('info.index'));
     }
 
     public function logout()
@@ -47,8 +47,5 @@ class AuthController extends Controller
     {
         return view("restrito");
     }
-    public function dashboard(Request $request)
-    {
-        return view("dashboard.home");
-    }
+
 }

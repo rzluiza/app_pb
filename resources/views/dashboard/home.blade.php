@@ -1,5 +1,13 @@
 @extends('layouts.auth')
 
-Aqui será o dashboard {{auth()->user()->nome}}
+@section('content')
+    Aqui será o dashboard {{ auth()->user()->nome }}
 
-<a href="{{ route('auth.logout')}}">Logout</a>
+    <ul>
+        @foreach ($info as $infos)
+            <li>{{ $infos->titulo }}</li>
+        @endforeach
+    </ul>
+
+    <a href="{{ route('auth.logout') }}">Logout</a>
+@endsection
