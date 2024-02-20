@@ -16,11 +16,24 @@
     </div>
     <div>
         <label for="departamento">Departamento:</label>
-        <input class="border" type="text" id="departamento" name="departamento" required>
+        <select id="departamento" name="departamento">
+            <option value="cs">CS</option>
+            <option value="suporte">SUPORTE</option>
+        </select>
     </div>
     <div>
         <label for="senha">Senha:</label>
         <input class="border" type="password" id="senha" name="senha" required>
     </div>
     <button type="submit">Registrar</button>
+
+    @if ($errors->any())
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </form>
